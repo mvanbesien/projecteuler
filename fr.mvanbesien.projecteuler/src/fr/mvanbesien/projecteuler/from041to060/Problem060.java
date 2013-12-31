@@ -13,7 +13,7 @@ public class Problem060 implements Callable<Long> {
 	@Override
 	public Long call() throws Exception {
 
-		long max = 30000; // Number increased as per null results... 10000, 20000 and finally 30000
+		long max = 9000; // Number increased as per null results... 1000, 2000 and finally 9000
 
 		for (long prime1 = nextPrime(5); prime1 < max; prime1 = nextPrime(prime1)) {
 			for (long prime2 = nextPrime(prime1); prime2 < max; prime2 = nextPrime(prime2)) {
