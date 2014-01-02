@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.NumberUtils;
+
 public class Problem055 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -25,18 +27,18 @@ public class Problem055 implements Callable<Long> {
 			List<BigInteger> toRemove = new ArrayList<>();
 
 			BigInteger value = initialConditions.get(0);
-			BigInteger reverse = getReverse(value);
+			BigInteger reverse = NumberUtils.getReverse(value);
 			toRemove.add(value);
 			toRemove.add(reverse);
 			boolean palindromeFound = false;
 
 			for (int i = 0; i < 50 && !palindromeFound; i++) {
 				BigInteger addition = value.add(reverse);
-				if (isPalindrome(addition.toString())) {
+				if (NumberUtils.isPalindrome(addition)) {
 					palindromeFound = true;
 				} else {
 					value = addition;
-					reverse = getReverse(value);
+					reverse = NumberUtils.getReverse(value);
 					toRemove.add(value);
 					toRemove.add(reverse);
 				}
@@ -51,24 +53,6 @@ public class Problem055 implements Callable<Long> {
 		}
 
 		return (long) lychrel.size();
-	}
-
-	private static boolean isPalindrome(String string) {
-		int length = string.length();
-		boolean isPalindrome = true;
-		for (int i = 0; i < length / 2 + 1 && isPalindrome; i++) {
-			isPalindrome = string.charAt(i) == string.charAt(length - i - 1);
-		}
-		return isPalindrome;
-	}
-
-	private static BigInteger getReverse(BigInteger integer) {
-		String value = integer.toString();
-		String reverse = "";
-		for (int i = 0; i < value.length(); i++) {
-			reverse = "" + value.charAt(i) + reverse;
-		}
-		return new BigInteger(reverse);
 	}
 
 }

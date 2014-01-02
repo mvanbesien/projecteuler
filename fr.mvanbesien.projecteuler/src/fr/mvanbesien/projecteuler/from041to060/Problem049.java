@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem049 implements Callable<String> {
 
 	public static void main(String[] args) throws Exception {
@@ -16,7 +18,7 @@ public class Problem049 implements Callable<String> {
 	@Override
 	public String call() throws Exception {
 		List<Long> list = new ArrayList<Long>();
-		for (long l = nextPrime(1488L); l < 10000L; l = nextPrime(l)) {
+		for (long l = MathUtils.nextPrime(1488L); l < 10000L; l = MathUtils.nextPrime(l)) {
 			list.add(l);
 		}
 
@@ -34,24 +36,6 @@ public class Problem049 implements Callable<String> {
 		}
 
 		return null;
-	}
-
-	private long nextPrime(long i) {
-		long temp = i + (i % 2 == 0 ? 1 : 2);
-		while (!isPrime(temp)) {
-			temp += 2;
-		}
-		return temp;
-	}
-
-	private boolean isPrime(long value) {
-		if (value > 2 && value % 2 == 0)
-			return false;
-		for (int i = 3; i <= (int) Math.sqrt(value) + 1; i = i + 2) {
-			if (value % i == 0)
-				return false;
-		}
-		return true;
 	}
 
 	private boolean isPermutation(long l1, long l2) {

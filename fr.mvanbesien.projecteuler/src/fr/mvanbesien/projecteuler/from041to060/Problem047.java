@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem047 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -23,13 +25,13 @@ public class Problem047 implements Callable<Long> {
 		return value - 4;
 	}
 
-	private List<Long> primeFactors(long value) {
+	private List<Long> primeFactors(long value, int limit) {
 		List<Long> factors = new ArrayList<>();
 		long temp = value;
 		long factor = 2;
-		while (temp > 1) {
-			while (temp % factor == 0) {
-				if (!factors.contains(factor) && isPrime(factor))
+		while (temp > 1 && factors.size() <= limit) {
+			while (temp % factor == 0 && factors.size() <= limit) {
+				if (!factors.contains(factor) && MathUtils.isPrime(factor))
 					factors.add(factor);
 				temp = temp / factor;
 			}
@@ -38,16 +40,8 @@ public class Problem047 implements Callable<Long> {
 		return factors;
 	}
 
-	private boolean isPrime(long number) {
-		if (number == 1)
-			return false;
-		if (number == 2)
-			return true;
-		for (long i = 3; i <= (long) Math.sqrt(number) + 1; i = i + 2) {
-			if (number % i == 0)
-				return false;
-		}
-		return true;
+	private List<Long> primeFactors(long value) {
+		return primeFactors(value, Integer.MAX_VALUE);
 	}
 
 }

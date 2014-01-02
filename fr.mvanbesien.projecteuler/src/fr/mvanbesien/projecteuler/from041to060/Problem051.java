@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem051 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -15,7 +17,7 @@ public class Problem051 implements Callable<Long> {
 
 	@Override
 	public Long call() throws Exception {
-		long prime = nextPrime(56003);
+		long prime = MathUtils.nextPrime(56003);
 		while (true) {
 			String primeAsString = String.valueOf(prime);
 			for (char c1 : primeAsString.toCharArray()) {
@@ -24,7 +26,7 @@ public class Problem051 implements Callable<Long> {
 					String replace = primeAsString.replace(c1, c2);
 					if (!replace.startsWith("0")) {
 						long temp = Long.parseLong(replace);
-						if (isPrime(temp)) {
+						if (MathUtils.isPrime(temp)) {
 							primes.add(temp);
 						}
 					}
@@ -38,27 +40,9 @@ public class Problem051 implements Callable<Long> {
 					}
 					return Collections.min(primes);
 				}
-				prime = nextPrime(prime);
+				prime = MathUtils.nextPrime(prime);
 			}
 		}
-	}
-
-	private long nextPrime(long i) {
-		long temp = i + (i % 2 == 0 ? 1 : 2);
-		while (!isPrime(temp)) {
-			temp += 2;
-		}
-		return temp;
-	}
-
-	private boolean isPrime(long value) {
-		if (value > 2 && value % 2 == 0)
-			return false;
-		for (long i = 3; i <= (int) Math.sqrt(value) + 1; i = i + 2) {
-			if (value % i == 0)
-				return false;
-		}
-		return true;
 	}
 
 }

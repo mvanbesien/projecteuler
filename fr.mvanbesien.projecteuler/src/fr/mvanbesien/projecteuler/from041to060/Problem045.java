@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from041to060;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.GeometricalNumberUtils;
+
 public class Problem045 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -14,9 +16,9 @@ public class Problem045 implements Callable<Long> {
 	public Long call() throws Exception {
 		long index = 40756;
 		while (true) {
-			long triangle = nextTriangle(index);
-			long pentagonal = nextPentagonal(index);
-			long hexagonal = nextHexagonal(index);
+			long triangle = GeometricalNumberUtils.nextTriangle(index);
+			long pentagonal = GeometricalNumberUtils.nextPentagonal(index);
+			long hexagonal = GeometricalNumberUtils.nextHexagonal(index);
 
 			if (triangle == pentagonal && triangle == hexagonal) {
 				return pentagonal;
@@ -25,20 +27,7 @@ public class Problem045 implements Callable<Long> {
 		}
 	}
 
-	private long nextHexagonal(long value) {
-		long x = (long) (1 + Math.sqrt(1 + 8 * value)) / 4;
-		return (x + 1) * (2 * (x + 1) - 1);
-	}
-
-	private long nextTriangle(long value) {
-		long x = (long) (-1 + Math.sqrt(1 + 8 * value)) / 2;
-		return (x + 1) * (x + 1 + 1) / 2;
-	}
-
-	private long nextPentagonal(long value) {
-		long x = (long) (1 + Math.sqrt(1 + 24 * value)) / 6;
-		return (x + 1) * (3 * (x + 1) - 1) / 2;
-	}
+	
 	
 	private long min(long a, long b) {
 		return a < b ? a : b;

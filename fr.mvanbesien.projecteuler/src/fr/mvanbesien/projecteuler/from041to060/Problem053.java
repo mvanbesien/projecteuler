@@ -3,6 +3,8 @@ package fr.mvanbesien.projecteuler.from041to060;
 import java.math.BigInteger;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem053 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -17,7 +19,7 @@ public class Problem053 implements Callable<Long> {
 		for (int n = 1; n <= 100; n++) {
 			boolean breakLoop = false;
 			for (int r = 1; r <= n && !breakLoop; r++) {
-				BigInteger bi = comb(n, r);
+				BigInteger bi = MathUtils.comb(n, r);
 				if (bi.toString().length() >= "1000000".length()) {
 					addition = addition + (n - 2 * r + 1);
 					breakLoop = true;
@@ -29,17 +31,6 @@ public class Problem053 implements Callable<Long> {
 		return addition;
 	}
 
-	private BigInteger fact(long value) {
-
-		BigInteger fact = BigInteger.valueOf(1);
-		for (int i = 2; i <= value; i++) {
-			fact = fact.multiply(BigInteger.valueOf(i));
-		}
-		return fact;
-	}
-
-	private BigInteger comb(long n, long r) {
-		return fact(n).divide(fact(r)).divide(fact(n - r));
-	}
+	
 
 }

@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from041to060;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem058 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -23,23 +25,11 @@ public class Problem058 implements Callable<Long> {
 			long newDiagValues[] = new long[] { spiralSide * spiralSide, spiralSide * spiralSide - (spiralSide - 1),
 					spiralSide * spiralSide - 2 * (spiralSide - 1), spiralSide * spiralSide - 3 * (spiralSide - 1) };
 			for (long l : newDiagValues) {
-				if (isPrime(l))
+				if (MathUtils.isPrime(l))
 					numberOfPrimes++;
 			}
 		}
 		return spiralSide;
 	}
 	
-	private boolean isPrime(long value) {
-
-		if (value > 2 && value % 2 == 0)
-			return false;
-
-		for (int i = 3; i <= (int) Math.sqrt(value) + 1; i = i + 2) {
-			if (value % i == 0)
-				return false;
-		}
-		return true;
-	}
-
 }

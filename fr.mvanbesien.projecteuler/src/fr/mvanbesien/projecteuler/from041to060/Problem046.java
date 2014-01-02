@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from041to060;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem046 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -21,7 +23,7 @@ public class Problem046 implements Callable<Long> {
 
 	private boolean isDecomposable(long value) {
 		for (long power = 1; 2 * power * power <= value; power++) {
-			for (long prime = 2; prime <= value - 2 * power * power; prime = nextPrime(prime)) {
+			for (long prime = 2; prime <= value - 2 * power * power; prime = MathUtils.nextPrime(prime)) {
 				if (value == prime + 2 * power * power) {
 					return true;
 				}
@@ -30,41 +32,16 @@ public class Problem046 implements Callable<Long> {
 		return false;
 	}
 
-	private long nextPrime(long number) {
-		long temp = number;
-		if (temp % 2 == 0)
-			temp++;
-		else
-			temp += 2;
-
-		while (!isPrime(temp)) {
-			temp = temp + 2;
-		}
-		return temp;
-	}
-
 	private long nextOddNonPrime(long number) {
 		long temp = number;
 		if (temp % 2 == 0)
 			temp++;
 		else
 			temp += 2;
-		while (isPrime(temp)) {
+		while (MathUtils.isPrime(temp)) {
 			temp = temp + 2;
 		}
 		return temp;
-	}
-
-	private boolean isPrime(long number) {
-		if (number == 1)
-			return false;
-		if (number == 2)
-			return true;
-		for (long i = 3; i <= (long) Math.sqrt(number) + 1; i = i + 2) {
-			if (number % i == 0)
-				return false;
-		}
-		return true;
 	}
 
 }
