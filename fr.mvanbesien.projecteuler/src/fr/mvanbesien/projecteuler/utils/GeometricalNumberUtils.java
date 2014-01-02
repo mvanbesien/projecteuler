@@ -62,7 +62,7 @@ public class GeometricalNumberUtils {
 		return value * (2 * value - 1);
 	}
 
-	public static long getHexagonalIndex(long value) {
+	private static long getHexagonalIndex(long value) {
 		return (long) (1 + Math.sqrt(1 + 8 * value)) / 4;
 	}
 
@@ -76,6 +76,40 @@ public class GeometricalNumberUtils {
 
 	// Heptagonals
 
+	public static long getHeptagonal(long value) {
+		return value * (5 * value - 3) / 2;
+	}
+
+	private static long getHeptagonalIndex(long value) {
+		// TODO
+		return 0;
+	}
+
+	public static long nextHeptagonal(long value) {
+		return getHeptagonal(getHeptagonalIndex(value) + 1);
+	}
+
+	public static boolean isHeptagonal(long value) {
+		return getHeptagonal(getHeptagonalIndex(value)) == value;
+	}
+
 	// Octogonals
 
+	public static long getOctogonal(long value) {
+		return value * (3 * value - 2);
+	}
+
+	private static long getOctogonalIndex(long value) {
+		// TODO
+		return 0;
+	}
+
+	public static long nextOctogonal(long value) {
+		return getOctogonal(getOctogonalIndex(value) + 1);
+	}
+
+	public static boolean isOctogonal(long value) {
+		return getOctogonal(getOctogonalIndex(value)) == value;
+	}
+	
 }
