@@ -81,8 +81,7 @@ public class GeometricalNumberUtils {
 	}
 
 	private static long getHeptagonalIndex(long value) {
-		// TODO
-		return 0;
+		return (long) (3 + Math.sqrt(9 + 40 * value)) / 10;
 	}
 
 	public static long nextHeptagonal(long value) {
@@ -100,8 +99,7 @@ public class GeometricalNumberUtils {
 	}
 
 	private static long getOctogonalIndex(long value) {
-		// TODO
-		return 0;
+		return (long) (2 + Math.sqrt(4 + 12 * value)) / 6;
 	}
 
 	public static long nextOctogonal(long value) {
@@ -111,5 +109,4 @@ public class GeometricalNumberUtils {
 	public static boolean isOctogonal(long value) {
 		return getOctogonal(getOctogonalIndex(value)) == value;
 	}
-	
 }
