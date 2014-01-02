@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from021to040;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem027 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -17,7 +19,7 @@ public class Problem027 implements Callable<Long> {
 		for (int a = -999; a < 999; a++) {
 			for (int b = -999; b < 999; b++) {
 				int n = 0;
-				while (isPrime(Math.abs(n * n + a * n + b))) {
+				while (MathUtils.isPrime(Math.abs(n * n + a * n + b))) {
 					n++;
 				}
 				if (n > maxN) {
@@ -28,17 +30,4 @@ public class Problem027 implements Callable<Long> {
 		}
 		return (long) solution;
 	}
-
-	private static final boolean isPrime(int i) {
-		if (i > 2 && i % 2 == 0)
-			return false;
-		for (int j = 3; j < Math.sqrt(i); j = j + 2) {
-			if (i % j == 0) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 }

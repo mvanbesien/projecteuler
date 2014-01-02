@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from021to040;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem034 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -17,7 +19,7 @@ public class Problem034 implements Callable<Long> {
 			int temp = i;
 			int sum = 0;
 			while (temp > 0 && sum <= i) {
-				sum += fact(temp % 10);
+				sum += MathUtils.fact(temp % 10).longValue();
 				temp = temp / 10;
 			}
 			if (temp == 0 && sum == i) {
@@ -25,13 +27,6 @@ public class Problem034 implements Callable<Long> {
 			}
 		}
 		return overallSum;
-	}
-
-	private static long fact(long number) {
-		int product = 1;
-		for (int i = 2; i <= number; i++)
-			product = product * i;
-		return product;
 	}
 
 }

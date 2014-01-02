@@ -1,7 +1,8 @@
 package fr.mvanbesien.projecteuler.from021to040;
 
-import java.math.BigInteger;
 import java.util.concurrent.Callable;
+
+import fr.mvanbesien.projecteuler.utils.Fraction;
 
 public class Problem033 implements Callable<Long> {
 
@@ -9,29 +10,6 @@ public class Problem033 implements Callable<Long> {
 		long nanotime = System.nanoTime();
 		System.out.println("Answer is " + new Problem033().call());
 		System.out.println(String.format("Executed in %d µs", (System.nanoTime() - nanotime) / 1000));
-	}
-
-	private static final class Fraction {
-		int numerator;
-		int denominator;
-
-		Fraction(int numerator, int denominator) {
-			this.numerator = numerator;
-			this.denominator = denominator;
-		}
-
-		@Override
-		public String toString() {
-			return this.numerator + "/" + this.denominator;
-		}
-
-		public static Fraction multiply(Fraction f1, Fraction f2) {
-			int numerator = f1.numerator * f2.numerator;
-			int denominator = f1.denominator * f2.denominator;
-			int gcd = BigInteger.valueOf(numerator).gcd(BigInteger.valueOf(denominator)).intValue();
-			return new Fraction(numerator / gcd, denominator / gcd);
-		}
-
 	}
 
 	@Override
@@ -53,7 +31,7 @@ public class Problem033 implements Callable<Long> {
 				}
 			}
 		}
-		return (long) f.denominator;
+		return (long) f.getDenominator();
 	}
 
 }

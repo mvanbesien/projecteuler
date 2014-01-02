@@ -2,6 +2,8 @@ package fr.mvanbesien.projecteuler.from021to040;
 
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem024 implements Callable<String> {
 
 	public static void main(String[] args) throws Exception {
@@ -17,20 +19,12 @@ public class Problem024 implements Callable<String> {
 		String digits = "0123456789";
 		String combination = "";
 		while (digits.length() > 0) {
-			int index = (int) ((indexToReach - base) / fact(digits.length() - 1));
-			base = base += index * fact(digits.length() - 1);
+			int index = (int) ((indexToReach - base) / MathUtils.fact(digits.length() - 1).longValue());
+			base = base += index * MathUtils.fact(digits.length() - 1).longValue();
 			combination = combination + digits.charAt(index);
 			digits = digits.substring(0, index) + digits.substring(index + 1);
 		}
 		return combination;
-	}
-
-	public static long fact(long i) {
-		long j = 1;
-		for (long k = 2; k <= i; k++) {
-			j = j * k;
-		}
-		return j;
 	}
 
 }

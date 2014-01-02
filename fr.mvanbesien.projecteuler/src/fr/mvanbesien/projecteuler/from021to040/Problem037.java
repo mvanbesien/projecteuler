@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import fr.mvanbesien.projecteuler.utils.MathUtils;
+
 public class Problem037 implements Callable<Long> {
 
 	public static void main(String[] args) throws Exception {
@@ -23,9 +25,9 @@ public class Problem037 implements Callable<Long> {
 			long tempLeft = prime / 10;
 			long tempRight = Integer.parseInt(String.valueOf(prime).substring(1));
 			while (tempLeft > 0 && tempRight > 0 && isTruncatablePrime) {
-				if (!isPrime(tempLeft))
+				if (!MathUtils.isPrime(tempLeft))
 					isTruncatablePrime = false;
-				else if (!isPrime(tempRight))
+				else if (!MathUtils.isPrime(tempRight))
 					isTruncatablePrime = false;
 				else {
 					tempLeft = tempLeft / 10;
@@ -37,25 +39,10 @@ public class Problem037 implements Callable<Long> {
 				sum += prime;
 			}
 			prime = prime + 2;
-			while (!isPrime(prime)) {
+			while (!MathUtils.isPrime(prime)) {
 				prime = prime + 2;
 			}
 		}
 		return sum;
 	}
-
-	private static boolean isPrime(long value) {
-		if (value == 1)
-			return false;
-		if (value <= 3)
-			return true;
-		if (value % 2 == 0)
-			return false;
-		boolean isPrime = true;
-		for (int i = 3; i <= Math.sqrt(value) + 1 && isPrime; i = i + 2) {
-			isPrime = value % i != 0;
-		}
-		return isPrime;
-	}
-
 }

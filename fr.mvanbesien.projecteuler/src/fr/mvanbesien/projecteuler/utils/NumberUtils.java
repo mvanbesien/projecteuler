@@ -23,4 +23,18 @@ public class NumberUtils {
 		return new BigInteger(reverse);
 	}
 	
+	public static int getMirror(int number, boolean considerLast) {
+		int result = number;
+		int reminder = number;
+		if (!considerLast)
+			reminder = reminder / 10;
+		while (reminder > 0) {
+			result = result * 10 + reminder % 10;
+			reminder = reminder / 10;
+		}
+
+		return result;
+	}
+
+	
 }
