@@ -2,30 +2,80 @@ package fr.mvanbesien.projecteuler.utils;
 
 public class GeometricalNumberUtils {
 
-	public static long nextHexagonal(long value) {
-		long x = (long) (1 + Math.sqrt(1 + 8 * value)) / 4;
-		return (x + 1) * (2 * (x + 1) - 1);
+	// Triangles
+
+	public static long getTriangle(long value) {
+		return value * (value + 1) / 2;
+	}
+
+	public static long getTriangleIndex(long value) {
+		return (long) (-1 + Math.sqrt(1 + 8 * value)) / 2;
 	}
 
 	public static long nextTriangle(long value) {
-		long x = (long) (-1 + Math.sqrt(1 + 8 * value)) / 2;
-		return (x + 1) * (x + 1 + 1) / 2;
+		return getTriangle(getTriangleIndex(value) + 1);
 	}
 
-	public static long nextPentagonal(long value) {
-		long x = (long) (1 + Math.sqrt(1 + 24 * value)) / 6;
-		return getPentagonal(x + 1);
+	public static boolean isTriangle(long value) {
+		return value <= 1 ? false : getTriangle(getTriangleIndex(value)) == value;
 	}
+
+	// Squares
+
+	public static long getSquare(long value) {
+		return value * value;
+	}
+
+	public static long getSquareIndex(long value) {
+		return (long) Math.sqrt(value);
+	}
+
+	public static long nextSquare(long value) {
+		return getSquare(getSquareIndex(value) + 1);
+	}
+
+	public static boolean isSquare(long value) {
+		return getSquare(getSquare(value)) == value;
+	}
+
+	// Pentagonals
 
 	public static long getPentagonal(long value) {
 		return value * (3 * value - 1) / 2;
 	}
 
-	public static boolean isPentagonal(long value) {
-		if (value <= 1)
-			return false;
-		long x = (long) (1 + Math.sqrt(1 + 24 * value)) / 6;
-		return getPentagonal(x) == value;
+	private static long getPentagonalIndex(long value) {
+		return (long) (1 + Math.sqrt(1 + 24 * value)) / 6;
 	}
+
+	public static boolean isPentagonal(long value) {
+		return value <= 1 ? false : getPentagonal(getPentagonalIndex(value)) == value;
+	}
+
+	public static long nextPentagonal(long value) {
+		return getPentagonal(getPentagonalIndex(value) + 1);
+	}
+
+	// Hexagonals
+
+	public static long getHexagonal(long value) {
+		return value * (2 * value - 1);
+	}
+
+	public static long getHexagonalIndex(long value) {
+		return (long) (1 + Math.sqrt(1 + 8 * value)) / 4;
+	}
+
+	public static boolean isHexagonal(long value) {
+		return getHexagonal(getHexagonalIndex(value)) == value;
+	}
+
+	public static long nextHexagonal(long value) {
+		return getHexagonal(getHexagonal(value) + 1);
+	}
+
+	// Heptagonals
+
+	// Octogonals
 
 }
