@@ -44,7 +44,7 @@ public class GeometricalNumberUtils {
 		return value * (3 * value - 1) / 2;
 	}
 
-	private static long getPentagonalIndex(long value) {
+	public static long getPentagonalIndex(long value) {
 		return (long) (1 + Math.sqrt(1 + 24 * value)) / 6;
 	}
 
@@ -62,7 +62,7 @@ public class GeometricalNumberUtils {
 		return value * (2 * value - 1);
 	}
 
-	private static long getHexagonalIndex(long value) {
+	public static long getHexagonalIndex(long value) {
 		return (long) (1 + Math.sqrt(1 + 8 * value)) / 4;
 	}
 
@@ -80,7 +80,7 @@ public class GeometricalNumberUtils {
 		return value * (5 * value - 3) / 2;
 	}
 
-	private static long getHeptagonalIndex(long value) {
+	public static long getHeptagonalIndex(long value) {
 		return (long) (3 + Math.sqrt(9 + 40 * value)) / 10;
 	}
 
@@ -98,7 +98,7 @@ public class GeometricalNumberUtils {
 		return value * (3 * value - 2);
 	}
 
-	private static long getOctogonalIndex(long value) {
+	public static long getOctogonalIndex(long value) {
 		return (long) (2 + Math.sqrt(4 + 12 * value)) / 6;
 	}
 
