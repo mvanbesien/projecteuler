@@ -12,7 +12,7 @@ public class Problem049 implements Callable<String> {
 	public static void main(String[] args) throws Exception {
 		long nanotime = System.nanoTime();
 		System.out.println("Answer is " + new Problem049().call());
-		System.out.println(String.format("Executed in %d µs", (System.nanoTime() - nanotime) / 1000));
+		System.out.println(String.format("Executed in %d ï¿½s", (System.nanoTime() - nanotime) / 1000));
 	}
 
 	@Override
@@ -27,10 +27,8 @@ public class Problem049 implements Callable<String> {
 			for (int j = i + 1; j < list.size(); j++) {
 				Long vj = list.get(j);
 				Long k = vj + vj - vi;
-				if (list.contains(k)) {
-					if (isPermutation(vi, vj) && isPermutation(vi, k)) {
-						return "" + vi + vj + k;
-					}
+				if (list.contains(k) && isPermutation(vi, vj) && isPermutation(vi, k)) {
+					return "" + vi + vj + k;
 				}
 			}
 		}
