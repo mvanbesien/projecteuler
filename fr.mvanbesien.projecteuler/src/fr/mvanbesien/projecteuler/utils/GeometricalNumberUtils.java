@@ -71,7 +71,7 @@ public class GeometricalNumberUtils {
 	}
 
 	public static long nextHexagonal(long value) {
-		return getHexagonal(getHexagonal(value) + 1);
+		return getHexagonal(getHexagonalIndex(value) + 1);
 	}
 
 	// Heptagonals
