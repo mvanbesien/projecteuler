@@ -15,12 +15,14 @@ public class Problem067 implements Callable<Long> {
 	@Override
 	public Long call() throws Exception {
 
-		int[][] matrix = new int[100][100];
+		int size = 100;
+
+		int[][] matrix = new int[size][size];
 
 		// First fill of the matrix
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				Problem067.class.getResourceAsStream("/Problem067.txt")));
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < size; i++) {
 			String[] chunks = reader.readLine().split(" ");
 			for (int j = 0; j < chunks.length; j = j + 1) {
 				matrix[i][j] = Integer.parseInt(chunks[j]);
@@ -28,7 +30,7 @@ public class Problem067 implements Callable<Long> {
 		}
 
 		// Cascade all the values
-		for (int i = 1; i < 100; i++) {
+		for (int i = 1; i < size; i++) {
 			for (int j = 0; j <= i; j++) {
 				if (j == 0) {
 					matrix[i][j] = matrix[i - 1][j] + matrix[i][j];
@@ -42,9 +44,9 @@ public class Problem067 implements Callable<Long> {
 		}
 
 		int max = 0;
-		for (int i = 0; i < 100; i++) {
-			if (matrix[99][i] > max)
-				max = matrix[99][i];
+		for (int i = 0; i < size; i++) {
+			if (matrix[size - 1][i] > max)
+				max = matrix[size - 1][i];
 		}
 		return (long) max;
 	}
