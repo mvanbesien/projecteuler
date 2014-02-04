@@ -2,13 +2,14 @@ package fr.mvanbesien.projecteuler.utils;
 
 import java.math.BigInteger;
 
-public final class Fraction {
+public final class Fraction implements Comparable<Fraction> {
 	int numerator;
 	int denominator;
 
 	public Fraction(int numerator, int denominator) {
-		this.numerator = numerator;
-		this.denominator = denominator;
+		int gcd = BigInteger.valueOf(numerator).gcd(BigInteger.valueOf(denominator)).intValue();
+		this.numerator = numerator / gcd;
+		this.denominator = denominator / gcd;
 	}
 
 	@Override
@@ -22,13 +23,19 @@ public final class Fraction {
 		int gcd = BigInteger.valueOf(numerator).gcd(BigInteger.valueOf(denominator)).intValue();
 		return new Fraction(numerator / gcd, denominator / gcd);
 	}
-	
+
 	public int getNumerator() {
 		return numerator;
 	}
-	
+
 	public int getDenominator() {
 		return denominator;
+	}
+
+	@Override
+	public int compareTo(Fraction o) {
+		double diff = new Double(this.numerator) / this.denominator - new Double(o.numerator) / o.denominator;
+		return (int) Math.signum(diff);
 	}
 
 }
