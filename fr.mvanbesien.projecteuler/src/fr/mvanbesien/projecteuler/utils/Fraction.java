@@ -16,6 +16,18 @@ public final class Fraction implements Comparable<Fraction> {
 	public String toString() {
 		return this.numerator + "/" + this.denominator;
 	}
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Fraction))
+			return false;
+		return compareTo((Fraction) obj) == 0;
+	}
 
 	public static Fraction multiply(Fraction f1, Fraction f2) {
 		int numerator = f1.numerator * f2.numerator;
