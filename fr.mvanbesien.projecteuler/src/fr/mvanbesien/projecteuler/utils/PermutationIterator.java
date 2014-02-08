@@ -2,6 +2,7 @@ package fr.mvanbesien.projecteuler.utils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,8 +17,11 @@ public class PermutationIterator<T> implements Iterator<T[]> {
 	private BigInteger index;
 
 	private BigInteger maxIndex;
+	
+	private T[] input;
 
 	public PermutationIterator(T[] elements, int bagsize) {
+		this.input = elements;
 		this.elements = new HashMap<>();
 		for (int i = 0; i < elements.length; i++)
 			this.elements.put(i, elements[i]);
@@ -44,11 +48,10 @@ public class PermutationIterator<T> implements Iterator<T[]> {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public T[] next() {
 		BigInteger workingIndex = this.index;
 		List<Integer> workingCopy = new ArrayList<>(this.elements.keySet());
-		Object[] solution = new Object[this.bagsize];
+		T[] solution = Arrays.copyOf(this.input, this.bagsize);
 		for (int i = 0; i < this.bagsize; i++) {
 			int index = workingIndex.mod(BigInteger.valueOf(workingCopy.size())).intValue();
 			solution[i] = this.elements.get(workingCopy.get(index));
@@ -56,7 +59,7 @@ public class PermutationIterator<T> implements Iterator<T[]> {
 			workingCopy.remove(index);
 		}
 		this.index = this.index.add(BigInteger.ONE);
-		return (T[]) solution;
+		return solution;
 	}
 
 	@Override
