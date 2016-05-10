@@ -13,7 +13,7 @@ public class Problem062 implements Callable<BigInteger> {
 	public static void main(String[] args) throws Exception {
 		long nanotime = System.nanoTime();
 		System.out.println("Answer is " + new Problem062().call());
-		System.out.println(String.format("Executed in %d µs", (System.nanoTime() - nanotime) / 1000));
+		System.out.println(String.format("Executed in %d Âµs", (System.nanoTime() - nanotime) / 1000));
 	}
 	
 	@Override
